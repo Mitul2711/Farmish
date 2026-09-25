@@ -34,27 +34,27 @@ const Cart = () => {
       <div className="cart-layout">
         <div className="cart-items">
           {cart.map((item, index) => (
-            <div key={`${item.product.id}-${item.size}-${index}`} className="cart-item">
+            <div key={`${item.id}-${index}`} className="cart-item">
               <Link to={`/product/${item.product.id}`}>
                 <img src={item.product.image || 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=200&h=200&fit=crop'} alt={item.product.name} className="cart-item-img" />
               </Link>
               <div className="cart-item-info">
                 <h4><Link to={`/product/${item.product.id}`}>{item.product.name}</Link></h4>
-                <div className="cart-item-meta">Pack Size: {item.size}</div>
-                <div className="cart-item-price">₹{item.product.price}</div>
+                <div className="cart-item-meta">Pack Size: {item.selectedSize.size}</div>
+                <div className="cart-item-price">₹{item.selectedSize.price}</div>
               </div>
               <div className="cart-item-actions">
                 <div className="quantity-selector">
-                  <button className="qty-btn" onClick={() => updateQuantity && updateQuantity(item.product.id, item.size, item.quantity - 1)}>
+                  <button className="qty-btn" onClick={() => updateQuantity && updateQuantity(item.id, item.quantity - 1)}>
                     <Minus size={14} />
                   </button>
                   <span className="qty-value" style={{padding: '0 0.75rem'}}>{item.quantity}</span>
-                  <button className="qty-btn" onClick={() => updateQuantity && updateQuantity(item.product.id, item.size, item.quantity + 1)}>
+                  <button className="qty-btn" onClick={() => updateQuantity && updateQuantity(item.id, item.quantity + 1)}>
                     <Plus size={14} />
                   </button>
                 </div>
-                <div className="cart-item-subtotal">₹{item.product.price * item.quantity}</div>
-                <button className="remove-btn" onClick={() => removeFromCart && removeFromCart(item.product.id, item.size)}>
+                <div className="cart-item-subtotal">₹{item.selectedSize.price * item.quantity}</div>
+                <button className="remove-btn" onClick={() => removeFromCart && removeFromCart(item.id)}>
                   <Trash2 size={18} />
                 </button>
               </div>
