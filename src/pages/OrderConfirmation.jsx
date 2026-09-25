@@ -13,9 +13,10 @@ const OrderConfirmation = () => {
   }, []);
 
   const orderData = location.state?.orderData || {
-    paymentMethod: 'UPI',
+    paymentMethod: 'cod',
     deliveryMethod: 'standard',
-    address: 'Your saved address'
+    address: 'Your saved address',
+    deliveryEstimate: '3-5 business days'
   };
 
   const today = new Date();
@@ -32,7 +33,11 @@ const OrderConfirmation = () => {
       </div>
       
       <h1>Thank You for Choosing Farmish!</h1>
-      <p className="subtitle">Your order has been placed successfully and is being processed.</p>
+      <p className="subtitle">Order placed successfully. We are now preparing your Farmish goodness.</p>
+      <div className="order-success-message">
+        <strong>Your order is confirmed!</strong>
+        <span>We will send an email regarding your order and delivery updates to {orderData.email || 'your email address'}.</span>
+      </div>
 
       <div className="order-details-card">
         <div className="order-meta">
@@ -51,7 +56,7 @@ const OrderConfirmation = () => {
           <div className="meta-item">
             <span className="meta-label">Expected Delivery</span>
             <span className="meta-value">
-              {orderData.deliveryMethod === 'express' ? '1-2 business days' : '3-5 business days'}
+              {orderData.deliveryEstimate || (orderData.deliveryMethod === 'express' ? '1-2 business days' : '3-5 business days')}
             </span>
           </div>
         </div>

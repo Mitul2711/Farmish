@@ -198,6 +198,22 @@
   border-radius: 0 8px 8px 0;
 }
 
+.cod-option {
+  cursor: default;
+}
+
+.cod-option input[type="radio"] {
+  accent-color: var(--color-primary);
+}
+
+.cod-availability {
+  padding: 0.85rem 1rem;
+  color: var(--color-primary);
+  background: var(--color-bg);
+  border-left: 3px solid var(--color-accent);
+  font-size: 0.9rem;
+}
+
 .review-section {
   margin-bottom: 2rem;
 }

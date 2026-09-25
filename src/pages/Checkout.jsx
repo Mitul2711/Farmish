@@ -1,12 +1,20 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Check, Lock } from 'lucide-react';
 import { CartContext } from '../context/CartContext';
 import './Checkout.css';
 
+const getDeliveryEstimate = (city) => {
+  const normalizedCity = city.trim().toLowerCase();
+  return ['ahmedabad', 'gandhinagar'].includes(normalizedCity)
+    ? 'Within 24 hours'
+    : '3-5 business days';
+};
+
 const Checkout = () => {
   const navigate = useNavigate();
   const { cart = [], cartTotal = 0, clearCart } = useContext(CartContext) || {};
+  const hasPlacedOrder = useRef(false);
   const [currentStep, setCurrentStep] = useState(1);
   
   const [formData, setFormData] = useState({
@@ -18,7 +26,7 @@ const Checkout = () => {
     state: '',
     pincode: '',
     deliveryMethod: 'standard',
-    paymentMethod: 'upi',
+    paymentMethod: 'cod',
     upiId: '',
     cardNumber: '',
     cardExpiry: '',
@@ -26,7 +34,7 @@ const Checkout = () => {
   });
 
   useEffect(() => {
-    if (!cart || cart.length === 0) {
+    if ((!cart || cart.length === 0) && !hasPlacedOrder.current) {
       navigate('/shop');
     }
   }, [cart, navigate]);
@@ -47,8 +55,9 @@ const Checkout = () => {
   };
 
   const handlePlaceOrder = () => {
+    hasPlacedOrder.current = true;
     if (clearCart) clearCart();
-    navigate('/order-confirmation', { state: { orderData: formData } });
+    navigate('/order-confirmation', { state: { orderData: { ...formData, deliveryEstimate: getDeliveryEstimate(formData.city) } } });
   };
 
   const subtotal = cartTotal || cart.reduce((total, item) => total + (item.product.price * item.quantity), 0);
@@ -136,15 +145,8 @@ const Checkout = () => {
                 <label className={`radio-option ${formData.deliveryMethod === 'standard' ? 'selected' : ''}`}>
                   <input type="radio" name="deliveryMethod" value="standard" checked={formData.deliveryMethod === 'standard'} onChange={handleChange} />
                   <div className="option-details">
-                    <h4>Standard Delivery (3-5 business days)</h4>
+                    <h4>Home Delivery ({getDeliveryEstimate(formData.city)})</h4>
                     <p>{subtotal > 499 ? 'Free' : '₹49'}</p>
-                  </div>
-                </label>
-                <label className={`radio-option ${formData.deliveryMethod === 'express' ? 'selected' : ''}`}>
-                  <input type="radio" name="deliveryMethod" value="express" checked={formData.deliveryMethod === 'express'} onChange={handleChange} />
-                  <div className="option-details">
-                    <h4>Express Delivery (1-2 business days)</h4>
-                    <p>₹99</p>
                   </div>
                 </label>
               </div>
@@ -164,45 +166,14 @@ const Checkout = () => {
                 <strong>Note:</strong> This is a demo application. No real payments will be processed.
               </div>
               <div className="radio-group">
-                <label className={`radio-option ${formData.paymentMethod === 'upi' ? 'selected' : ''}`}>
-                  <input type="radio" name="paymentMethod" value="upi" checked={formData.paymentMethod === 'upi'} onChange={handleChange} />
-                  <div className="option-details" style={{width: '100%'}}>
-                    <h4>UPI</h4>
-                    {formData.paymentMethod === 'upi' && (
-                      <div className="form-group" style={{marginTop: '1rem'}}>
-                        <input type="text" name="upiId" placeholder="Enter UPI ID (e.g., name@okbank)" value={formData.upiId} onChange={handleChange} />
-                      </div>
-                    )}
-                  </div>
-                </label>
-                
-                <label className={`radio-option ${formData.paymentMethod === 'card' ? 'selected' : ''}`}>
-                  <input type="radio" name="paymentMethod" value="card" checked={formData.paymentMethod === 'card'} onChange={handleChange} />
-                  <div className="option-details" style={{width: '100%'}}>
-                    <h4>Credit / Debit Card</h4>
-                    {formData.paymentMethod === 'card' && (
-                      <div className="form-grid" style={{marginTop: '1rem'}}>
-                        <div className="form-group full-width">
-                          <input type="text" name="cardNumber" placeholder="Card Number" value={formData.cardNumber} onChange={handleChange} />
-                        </div>
-                        <div className="form-group">
-                          <input type="text" name="cardExpiry" placeholder="MM/YY" value={formData.cardExpiry} onChange={handleChange} />
-                        </div>
-                        <div className="form-group">
-                          <input type="text" name="cardCvv" placeholder="CVV" value={formData.cardCvv} onChange={handleChange} />
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </label>
-
-                <label className={`radio-option ${formData.paymentMethod === 'cod' ? 'selected' : ''}`}>
-                  <input type="radio" name="paymentMethod" value="cod" checked={formData.paymentMethod === 'cod'} onChange={handleChange} />
+                <div className="radio-option selected cod-option">
+                  <input type="radio" name="paymentMethod" value="cod" checked readOnly />
                   <div className="option-details">
                     <h4>Cash on Delivery</h4>
                     <p>Pay when your order arrives</p>
                   </div>
-                </label>
+                </div>
+                <div className="cod-availability">Only Cash on Delivery is available for Farmish orders.</div>
               </div>
               <div className="checkout-actions">
                 <button type="button" className="btn-secondary" onClick={handlePrevStep}>Back</button>
@@ -230,7 +201,7 @@ const Checkout = () => {
               <div className="review-section">
                 <h4>Delivery Method</h4>
                 <div className="review-content">
-                  <p>{formData.deliveryMethod === 'standard' ? 'Standard Delivery (3-5 business days)' : 'Express Delivery (1-2 business days)'}</p>
+                  <p>{getDeliveryEstimate(formData.city)}</p>
                 </div>
               </div>
 
@@ -258,8 +229,8 @@ const Checkout = () => {
             <div style={{display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.5rem'}}>
               {cart.map((item, idx) => (
                 <div key={idx} style={{display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem'}}>
-                  <span style={{color: 'var(--color-text-secondary)'}}>{item.quantity}x {item.product.name} ({item.size})</span>
-                  <span style={{fontWeight: 600}}>₹{item.product.price * item.quantity}</span>
+                  <span style={{color: 'var(--color-text-secondary)'}}>{item.quantity}x {item.product.name} ({item.selectedSize.size})</span>
+                  <span style={{fontWeight: 600}}>₹{item.selectedSize.price * item.quantity}</span>
                 </div>
               ))}
             </div>
