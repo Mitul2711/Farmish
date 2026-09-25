@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-primary: #2D6A4F;
+  --color-primary-light: #40916C;
+  --color-primary-lightest: #52B788;
+  --color-primary-dark: #1B4332;
+  --color-secondary: #8B7355;
+  --color-secondary-light: #A0896D;
+  --color-accent: #D4A843;
+  --color-accent-light: #E5C06E;
+  --color-bg: #FEFCF3;
+  --color-bg-alt: #F5F0E8;
+  --color-surface: #FFFFFF;
+  --color-text-primary: #2C2C2C;
+  --color-text-secondary: #666666;
+  --color-text-light: #999999;
+  --color-border: #E8E0D4;
+  --color-success: #2D6A4F;
+  --color-error: #C1292E;
+  --color-warning: #D4A843;
+
+  --spacing-4: 4px; --spacing-8: 8px; --spacing-12: 12px; --spacing-16: 16px;
+  --spacing-20: 20px; --spacing-24: 24px; --spacing-32: 32px; --spacing-48: 48px;
+  --spacing-64: 64px; --spacing-80: 80px; --spacing-96: 96px;
+
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-full: 9999px;
+  
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+  --shadow-soft: 0 8px 30px rgba(0,0,0,0.04);
+  
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+
+  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Playfair Display', serif;
+  
+  --z-below: -1; --z-normal: 1; --z-above: 10; --z-sticky: 100; --z-overlay: 1000; --z-toast: 9999;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background-color: var(--color-bg);
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+a { text-decoration: none; color: inherit; }
+ul, ol { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-20); }
+.section-padding { padding: var(--spacing-80) 0; }
+@media (max-width: 768px) { .section-padding { padding: var(--spacing-48) 0; } }
+
+.section-header { text-align: center; margin-bottom: var(--spacing-48); }
+.section-header .subtitle { color: var(--color-secondary); font-weight: 600; text-transform: uppercase; font-size: 0.875rem; letter-spacing: 0.05em; margin-bottom: var(--spacing-8); display: block; }
+.section-header h2 { font-size: 2.5rem; margin-bottom: var(--spacing-16); }
+.section-header p { color: var(--color-text-secondary); max-width: 600px; margin: 0 auto; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--spacing-8); padding: var(--spacing-12) var(--spacing-24); border-radius: var(--radius-full); font-weight: 500; transition: var(--transition-normal); text-align: center; }
+.btn-primary { background: var(--color-primary); color: white; }
+.btn-primary:hover { background: var(--color-primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn-secondary { background: transparent; color: var(--color-primary); border: 2px solid var(--color-primary); }
+.btn-secondary:hover { background: var(--color-primary); color: white; }
+.btn-accent { background: var(--color-accent); color: white; }
+.btn-accent:hover { background: var(--color-accent-light); transform: translateY(-2px); }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-bg-alt); }
+::-webkit-scrollbar-thumb { background: var(--color-secondary-light); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-secondary); }
+
+::selection { background: var(--color-primary-lightest); color: white; }
+
+html { scroll-behavior: smooth; }
+
+.animate-on-scroll, .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.animate-on-scroll.is-visible, .fade-up.is-visible { opacity: 1; transform: translateY(0); }
+
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }

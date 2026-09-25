@@ -1,0 +1,52 @@
+
+.recipe-hero img {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+}
+.recipe-main {
+  margin-top: -3rem;
+  position: relative;
+  background: #fff;
+  padding: 3rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 4rem;
+}
+.recipe-meta-detail {
+  display: flex;
+  gap: 2rem;
+  margin: 1.5rem 0 3rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  flex-wrap: wrap;
+}
+.recipe-body {
+  display: flex;
+  gap: 4rem;
+}
+.ingredients {
+  flex: 1;
+  background: var(--color-bg);
+  padding: 2rem;
+  border-radius: var(--radius-md);
+}
+.instructions {
+  flex: 2;
+}
+.instructions ol {
+  padding-left: 1.5rem;
+}
+.instructions li {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+.mt-4 {
+  margin-top: 2rem;
+  display: inline-block;
+}
+@media (max-width: 768px) {
+  .recipe-body {
+    flex-direction: column;
+  }
+}

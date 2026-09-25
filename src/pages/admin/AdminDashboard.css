@@ -1,0 +1,357 @@
+.admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.admin-header-dash {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.admin-header-dash h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1B1B2F;
+  margin: 0 0 4px 0;
+}
+
+.admin-date {
+  color: #6c757d;
+  font-size: 14px;
+  margin: 0;
+}
+
+.admin-btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #4361EE;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.admin-btn-primary:hover {
+  background-color: #3a53d0;
+}
+
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.admin-stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.admin-stat-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-stat-icon-wrapper.green { background-color: #e6f8f0; color: #2D6A4F; }
+.admin-stat-icon-wrapper.blue { background-color: #eaf0ff; color: #4361EE; }
+.admin-stat-icon-wrapper.purple { background-color: #f3ebfa; color: #8e44ad; }
+.admin-stat-icon-wrapper.orange { background-color: #fff2e6; color: #e67e22; }
+
+.admin-stat-info {
+  flex: 1;
+}
+
+.admin-stat-info h3 {
+  font-size: 14px;
+  color: #6c757d;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+.admin-stat-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.admin-stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1B1B2F;
+}
+
+.admin-stat-change {
+  font-size: 13px;
+  font-weight: 500;
+}
+.admin-stat-change.positive { color: #2D6A4F; }
+.admin-stat-change.negative { color: #C1292E; }
+
+/* Chart Area */
+.admin-chart-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.admin-chart-section h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 24px 0;
+  color: #1B1B2F;
+}
+
+.admin-chart-container {
+  display: flex;
+  height: 250px;
+  gap: 16px;
+}
+
+.admin-chart-y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #999;
+  font-size: 12px;
+  padding-bottom: 24px; /* Space for x labels */
+}
+
+.admin-chart-bars {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+  position: relative;
+}
+
+.admin-chart-bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 40px;
+}
+
+.admin-chart-bar-wrapper {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.admin-chart-bar {
+  width: 30px;
+  background-color: #4361EE;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.3s ease, opacity 0.2s ease;
+}
+
+.admin-chart-bar:hover {
+  opacity: 0.8;
+}
+
+.admin-chart-x-label {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #666;
+}
+
+/* Bottom Grid */
+.admin-dashboard-bottom {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.admin-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.admin-recent-orders h2, .admin-widget h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #1B1B2F;
+}
+
+.admin-view-all {
+  color: #4361EE;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.admin-recent-orders {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.admin-table-responsive {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th {
+  text-align: left;
+  padding: 12px 16px;
+  color: #6c757d;
+  font-weight: 500;
+  font-size: 13px;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 16px;
+  border-bottom: 1px solid #f8f9fa;
+  color: #2C2C2C;
+  font-size: 14px;
+}
+
+.admin-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.admin-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.status-processing { background: #fff3cd; color: #856404; }
+.status-shipped { background: #cce5ff; color: #004085; }
+.status-delivered { background: #d4edda; color: #155724; }
+
+/* Widgets */
+.admin-sidebar-widgets {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.admin-widget {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.admin-widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.admin-warning-icon {
+  color: #D4A843;
+}
+
+.admin-low-stock-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-low-stock-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f1f1;
+}
+.admin-low-stock-list li:last-child {
+  border-bottom: none;
+}
+
+.admin-stock-info h4 {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  color: #2C2C2C;
+}
+
+.admin-stock-count {
+  font-size: 12px;
+  color: #D4A843;
+  font-weight: 500;
+}
+
+.admin-btn-outline-sm {
+  background: transparent;
+  border: 1px solid #ddd;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  color: #4361EE;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.admin-btn-outline-sm:hover {
+  background: #f8f9fa;
+  border-color: #4361EE;
+}
+
+.admin-quick-links-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.admin-quick-link-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  color: #4361EE;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.admin-quick-link-btn:hover {
+  background: #eaf0ff;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1024px) {
+  .admin-dashboard-bottom {
+    grid-template-columns: 1fr;
+  }
+}

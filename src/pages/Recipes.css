@@ -1,0 +1,19 @@
+
+.recipes-hero {
+  padding: 6rem 0;
+  background: var(--color-bg);
+}
+.recipes-hero h1 {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  color: var(--color-primary);
+}
+.recipe-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+.recipe-main-prod {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.5rem;
+}
