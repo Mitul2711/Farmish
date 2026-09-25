@@ -11,13 +11,22 @@
   text-align: center;
   position: relative;
 }
+
+.about-hero .hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(31, 66, 48, 0.78), rgba(45, 90, 67, 0.42) 52%, rgba(38, 34, 26, 0.5));
+}
+
 .about-hero h1 {
   font-family: var(--font-heading);
   font-size: 4rem;
+  color: #FEFCF3;
   z-index: 1;
   position: relative;
 }
 .about-hero p {
+  color: #FEFCF3;
   z-index: 1;
   position: relative;
   font-size: 1.2rem;

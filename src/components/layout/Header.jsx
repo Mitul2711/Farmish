@@ -86,6 +86,13 @@ const Header = () => {
           </button>
         </div>
       </div>
+
+      <div className="announcement-ribbon" aria-label="Farmish benefits">
+        <div className="announcement-track">
+          <div className="announcement-set"><span>Farm to Family</span><i>✦</i><span>Direct From Farm</span><i>✦</i><span>Quality Checked</span><i>✦</i><span>Freshly Packed</span><i>✦</i><span>Delivered to Your Door</span><i>✦</i></div>
+          <div className="announcement-set" aria-hidden="true"><span>Farm to Family</span><i>✦</i><span>Direct From Farm</span><i>✦</i><span>Quality Checked</span><i>✦</i><span>Freshly Packed</span><i>✦</i><span>Delivered to Your Door</span><i>✦</i></div>
+        </div>
+      </div>
       
       {isSearchOpen && (
         <div className="search-overlay">

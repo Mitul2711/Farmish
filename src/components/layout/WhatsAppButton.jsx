@@ -10,7 +10,7 @@ const WhatsAppButton = () => {
 
   return (
     <a href={`https://wa.me/${config.contact.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer" className="whatsapp-btn" title="Chat with us on WhatsApp">
-      <MessageCircle size={32} />
+        <MessageCircle size={22} />
     </a>
   );
 };
